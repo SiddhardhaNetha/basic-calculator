@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator with Animated Background</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="startCalculatorReveal()">
+
+    <canvas id="backgroundCanvas"></canvas>
+
+    <div id="calc">
+        <div id="content">
+            <form>
+                <div id="output">
+                    <input type="text" id='res'>
+                </div>
+                <div class="btn">
+                    <input type="button" value='C' onclick="Clear()" id="clear">
+                    <input type="button" value='⌫' onclick="Back()" id="backspace">
+                    <input type="button" value='%' onclick="Solve('%')">
+                    <input type="button" value='/' onclick="Solve('/')">
+                    <br>
+                    <input type="button" value='7' onclick="Solve('7')">
+                    <input type="button" value='8' onclick="Solve('8')">
+                    <input type="button" value='9' onclick="Solve('9')">
+                    <input type="button" value='x' onclick="Solve('*')">
+                    <br>
+                    <input type="button" value='4' onclick="Solve('4')">
+                    <input type="button" value='5' onclick="Solve('5')">
+                    <input type="button" value='6' onclick="Solve('6')">
+                    <input type="button" value='-' onclick="Solve('-')">
+                    <br>
+                    <input type="button" value='1' onclick="Solve('1')">
+                    <input type="button" value='2' onclick="Solve('2')">
+                    <input type="button" value='3' onclick="Solve('3')">
+                    <input type="button" value='+' onclick="Solve('+')">
+                    <br>
+                    <input type="button" value='00' onclick="Solve('00')">
+                    <input type="button" value='0' onclick="Solve('0')">
+                    <input type="button" value='.' onclick="Solve('.')">
+                    <input type="button" value='=' onclick="Result()">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="credits" style="position: fixed; bottom: 10px; left: 10px; color: #aaa; font-size: 0.8em; z-index: 10;">
+        Designed and Developed by Sai Siddhardha Netha©<br>
+        Connect with me:
+        <a href="https://www.linkedin.com/in/sai-siddhardha-ashala" target="_blank" style="color: #0077B5; text-decoration: none; margin-left: 5px;">LinkedIn</a> |
+        <a href="https://github.com/SiddhardhaNetha" target="_blank" style="color: #6e5494; text-decoration: none; margin-left: 5px;">GitHub</a> |
+        <a href="mailto:siddhardhanetha@gmail.com" style="color: #007bff; text-decoration: none; margin-left: 5px;">Email</a>
+    </div>
+
+    <script src='script.js'></script>
+</body>
+</html>

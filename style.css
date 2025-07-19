@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -22,9 +21,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; 
-    background-color: #1a1a1a; 
-    pointer-events: auto; 
+    z-index: 0;
+    background-color: #1a1a1a;
+    pointer-events: auto;
 }
 
 .calculator-fade-in {
@@ -41,22 +40,23 @@ body {
 }
 
 #calc {
-    opacity: 0; 
-    display: flex; 
+    opacity: 0;
+    display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; 
-    z-index: 1; 
+    position: relative;
+    z-index: 1;
     pointer-events: none;
 }
-#content { 
-    background: #2c302c;
+
+#content {
+    background: rgba(44, 48, 44, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    background: rgba(44, 48, 44, 0.9); 
-    pointer-events: auto; 
+    pointer-events: auto;
 }
+
 #content form input {
     border: 0;
     outline: 0;
@@ -69,25 +69,27 @@ body {
     background-color: #5d615d;
     color: white;
 }
+
 #backspace, #clear {
     background-color: rgb(237, 89, 30);
     color: white;
 }
+
 #res {
     padding: 10px;
     background-color: #4a4d4a;
     color: #ffffff;
     font-weight: bold;
 }
+
 form #output {
     display: flex;
     justify-content: flex-end;
     margin: 15px 0;
-    
 }
+
 form #output input {
     text-align: right;
     flex: 1;
     font-size: 25px;
-    
 }

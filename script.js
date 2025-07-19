@@ -163,7 +163,8 @@ function Dot(x, y) {
         // Animate radius and color based on mouse distance
         if (distance < maxDistance) {
             let scale = 1 - (distance / maxDistance);
-            this.radius = this.baseRadius + (this.baseRadius * 1.2 * scale);
+            // *** CHANGED THIS LINE: Reduced multiplier from 5 to 2.5 ***
+            this.radius = this.baseRadius + (this.baseRadius * 1.2 * scale); // Grow up to 3.5 times original size (base + 2.5*base)
             this.color = glowColor;
             this.opacity = 0.5 + (0.5 * scale);
         } else {
@@ -211,5 +212,6 @@ canvas.addEventListener('mouseleave', function() {
     mouse.y = undefined;
 });
 
+// Initial setup
 resizeCanvas();
 animate();

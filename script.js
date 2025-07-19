@@ -1,4 +1,4 @@
-// Existing Calculator Functions (unchanged)
+
 function Solve(val) {
     var v = document.getElementById('res');
     var currentVal = v.value;
@@ -35,12 +35,12 @@ function Result() {
     const operators = ['+', '-', '*', '/', '%'];
     var lastChar = num1.slice(-1);
 
-    // --- NEW FEATURE: OnePlus Easter Egg ---
+    
     if (num1 === '1+') {
         document.getElementById('res').value = 'Oneplus';
-        return; // Exit the function after displaying "oneplus"
+        return; 
     }
-    // --- END NEW FEATURE ---
+    
 
     if (num1 === '') {
         document.getElementById('res').value = 'Error';
@@ -108,7 +108,7 @@ document.addEventListener('keydown', function (event) {
     Solve(mappedKey);
 });
 
-// Calculator Reveal Function (unchanged)
+
 function startCalculatorReveal() {
     const calculator = document.getElementById('calc');
     calculator.classList.add('hidden');
@@ -118,32 +118,31 @@ function startCalculatorReveal() {
     }, 50);
 }
 
-// NEW: Canvas Background Animation Logic
+
 const canvas = document.getElementById('backgroundCanvas');
 const ctx = canvas.getContext('2d');
 let dots = [];
 let mouse = { x: undefined, y: undefined };
-const maxDistance = 150; // Distance for dots to react
-const dotSpacing = 30; // Distance between dots in the grid
-const baseRadius = 1.5; // Initial radius of dots (you asked for this to be bigger)
-const glowColor = 'rgba(100, 100, 255, 0.7)'; // Blue glow
-const defaultColor = 'rgba(50, 50, 50, 0.7)'; // Dim initial color
+const maxDistance = 150; 
+const dotSpacing = 30; 
+const baseRadius = 1.5; 
+const glowColor = 'rgba(100, 100, 255, 0.7)';
+const defaultColor = 'rgba(50, 50, 50, 0.7)';
 
-// Adjust canvas size to window size
+
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    initDots(); // Reinitialize dots on resize
-}
+    initDots(); 
 
-// Dot object constructor
+
 function Dot(x, y) {
     this.x = x;
     this.y = y;
     this.baseRadius = baseRadius;
     this.radius = this.baseRadius;
     this.color = defaultColor;
-    this.opacity = 0.5; // Base opacity
+    this.opacity = 0.5;
 
     this.draw = function() {
         ctx.beginPath();
@@ -160,11 +159,11 @@ function Dot(x, y) {
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Animate radius and color based on mouse distance
+       
         if (distance < maxDistance) {
             let scale = 1 - (distance / maxDistance);
-            // *** CHANGED THIS LINE: Reduced multiplier from 5 to 2.5 ***
-            this.radius = this.baseRadius + (this.baseRadius * 1.2 * scale); // Grow up to 3.5 times original size (base + 2.5*base)
+           
+            this.radius = this.baseRadius + (this.baseRadius * 1.2 * scale); 
             this.color = glowColor;
             this.opacity = 0.5 + (0.5 * scale);
         } else {
@@ -176,7 +175,7 @@ function Dot(x, y) {
     };
 }
 
-// Initialize the grid of dots
+
 function initDots() {
     dots = [];
     const numCols = Math.floor(canvas.width / dotSpacing);
@@ -191,7 +190,7 @@ function initDots() {
     }
 }
 
-// Animation loop
+
 function animate() {
     requestAnimationFrame(animate);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -201,7 +200,7 @@ function animate() {
     }
 }
 
-// Event Listeners
+
 window.addEventListener('resize', resizeCanvas);
 canvas.addEventListener('mousemove', function(event) {
     mouse.x = event.clientX;
@@ -212,6 +211,6 @@ canvas.addEventListener('mouseleave', function() {
     mouse.y = undefined;
 });
 
-// Initial setup
+
 resizeCanvas();
 animate();

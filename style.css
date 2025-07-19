@@ -1,35 +1,32 @@
-/* Universal Box Sizing */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Base Body Styling */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #1a1a1a; /* Dark background */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Example font */
+    background: #1a1a1a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
-    position: relative; /* Needed for z-index to work on children */
+    position: relative;
 }
 
-/* Background Canvas Styling */
 #backgroundCanvas {
-    position: fixed; /* Use fixed to ensure it always covers the viewport */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Ensures it's at the back */
-    background-color: #1a1a1a; /* Match body background */
-    pointer-events: auto; /* Explicitly set to auto so it receives events */
+    z-index: 0; 
+    background-color: #1a1a1a; 
+    pointer-events: auto; 
 }
 
-/* Calculator Fade In Animation (unchanged) */
 .calculator-fade-in {
     animation: calc-fade-in 1s ease-out forwards;
 }
@@ -39,33 +36,26 @@ body {
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Utility Class to hide elements (unchanged) */
 .hidden {
     display: none !important;
 }
 
-
-/* YOUR ORIGINAL CALCULATOR STYLES BELOW THIS LINE */
 #calc {
-    opacity: 0; /* Initially hidden, will be revealed by JS */
-    /* REMOVE height: 100vh; from here. It was making the entire div block events. */
-    /* REMOVE width: 100%; also, let content dictate width */
-    display: flex; /* Keep flex to center #content */
+    opacity: 0; 
+    display: flex; 
     justify-content: center;
     align-items: center;
-    position: relative; /* Keep relative to contain #content for z-index */
-    z-index: 1; /* Ensures calculator is on top of the canvas */
-    /* Ensure it doesn't block pointer events initially */
-    pointer-events: none; /* Crucial: Mouse events pass through initially */
+    position: relative; 
+    z-index: 1; 
+    pointer-events: none;
 }
-#content { /* This is the actual calculator box */
+#content { 
     background: #2c302c;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    background: rgba(44, 48, 44, 0.9); /* Slightly transparent */
-    /* The #content itself should receive pointer events for its buttons */
-    pointer-events: auto; /* This ensures buttons inside are clickable */
+    background: rgba(44, 48, 44, 0.9); 
+    pointer-events: auto; 
 }
 #content form input {
     border: 0;

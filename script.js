@@ -1,3 +1,4 @@
+// Existing Calculator Functions (unchanged)
 function Solve(val) {
     var v = document.getElementById('res');
     var currentVal = v.value;
@@ -34,10 +35,12 @@ function Result() {
     const operators = ['+', '-', '*', '/', '%'];
     var lastChar = num1.slice(-1);
 
+    // --- NEW FEATURE: OnePlus Easter Egg ---
     if (num1 === '1+') {
         document.getElementById('res').value = 'Oneplus';
-        return;
+        return; // Exit the function after displaying "oneplus"
     }
+    // --- END NEW FEATURE ---
 
     if (num1 === '') {
         document.getElementById('res').value = 'Error';
@@ -67,12 +70,10 @@ function Clear() {
     var inp = document.getElementById('res');
     inp.value = '';
 }
-
 function Back() {
     var ev = document.getElementById('res');
     ev.value = ev.value.slice(0, -1);
 }
-
 document.addEventListener('keydown', function (event) {
     const key = event.key;
     let mappedKey = key;
@@ -107,6 +108,7 @@ document.addEventListener('keydown', function (event) {
     Solve(mappedKey);
 });
 
+// Calculator Reveal Function (unchanged)
 function startCalculatorReveal() {
     const calculator = document.getElementById('calc');
     calculator.classList.add('hidden');
@@ -116,31 +118,34 @@ function startCalculatorReveal() {
     }, 50);
 }
 
+// NEW: Canvas Background Animation Logic
 const canvas = document.getElementById('backgroundCanvas');
 const ctx = canvas.getContext('2d');
 let dots = [];
 let mouse = { x: undefined, y: undefined };
-const maxDistance = 150;
-const dotSpacing = 30;
-const baseRadius = 1.5;
-const glowColor = 'rgba(100, 100, 255, 0.7)';
-const defaultColor = 'rgba(50, 50, 50, 0.7)';
+const maxDistance = 150; // Distance for dots to react
+const dotSpacing = 30; // Distance between dots in the grid
+const baseRadius = 1.5; // Initial radius of dots (you asked for this to be bigger)
+const glowColor = 'rgba(100, 100, 255, 0.7)'; // Blue glow
+const defaultColor = 'rgba(50, 50, 50, 0.7)'; // Dim initial color
 
+// Adjust canvas size to window size
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    initDots();
+    initDots(); // Reinitialize dots on resize
 }
 
+// Dot object constructor
 function Dot(x, y) {
     this.x = x;
     this.y = y;
     this.baseRadius = baseRadius;
     this.radius = this.baseRadius;
     this.color = defaultColor;
-    this.opacity = 0.5;
+    this.opacity = 0.5; // Base opacity
 
-    this.draw = function () {
+    this.draw = function() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
         ctx.fillStyle = this.color;
@@ -150,14 +155,16 @@ function Dot(x, y) {
         ctx.shadowBlur = 0;
     };
 
-    this.update = function () {
+    this.update = function() {
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
 
+        // Animate radius and color based on mouse distance
         if (distance < maxDistance) {
             let scale = 1 - (distance / maxDistance);
-            this.radius = this.baseRadius + (this.baseRadius * 1.2 * scale);
+            
+            this.radius = this.baseRadius + (this.baseRadius * 1.2 * scale); // Grow up to 3.5 times original size (base + 2.5*base)
             this.color = glowColor;
             this.opacity = 0.5 + (0.5 * scale);
         } else {
@@ -169,6 +176,7 @@ function Dot(x, y) {
     };
 }
 
+// Initialize the grid of dots
 function initDots() {
     dots = [];
     const numCols = Math.floor(canvas.width / dotSpacing);
@@ -183,6 +191,7 @@ function initDots() {
     }
 }
 
+// Animation loop
 function animate() {
     requestAnimationFrame(animate);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -192,15 +201,17 @@ function animate() {
     }
 }
 
+// Event Listeners
 window.addEventListener('resize', resizeCanvas);
-canvas.addEventListener('mousemove', function (event) {
+canvas.addEventListener('mousemove', function(event) {
     mouse.x = event.clientX;
     mouse.y = event.clientY;
 });
-canvas.addEventListener('mouseleave', function () {
+canvas.addEventListener('mouseleave', function() {
     mouse.x = undefined;
     mouse.y = undefined;
 });
 
+// Initial setup
 resizeCanvas();
 animate();
